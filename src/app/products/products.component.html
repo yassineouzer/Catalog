@@ -1,5 +1,8 @@
 <div class="container">
-    <div class="card">
+    <ng-template #errors>
+        {{Errormessage}}
+    </ng-template>>
+    <div class="card" *ngIf="products; else errors">
         <div class="card-header">List of products
 
             <div class="card-body">
@@ -13,6 +16,9 @@
                                 <td>{{ p.id}}</td>
                                 <td>{{ p.name}}</td>
                                 <td>{{ p.price}}</td>
+                                <td><button class="btn btn-danger">
+                                 Delete
+                                </button></td>
                             </tr>
                         </tbody>
                
