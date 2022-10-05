@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Route, Router } from '@angular/router';
 import { NewProductComponent } from '../new-product/new-product.component';
+import { Product } from '../model/product.model';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,7 @@ import { NewProductComponent } from '../new-product/new-product.component';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products! : Array<any>;
+  products! : Array<Product>;
   Errormessage! :string;
   constructor(private productService:ProductService, private router:Router) { }
 
@@ -25,18 +26,29 @@ export class ProductsComponent implements OnInit {
      }
       
      }
-     )
-     
+     )}
+
+     HandleDeleteProduct(p :Product){
+       this.productService.deleteProduct(p.id).subscribe(
+       {
+        next: (data: any) => { 
+          this.products = data ;
+        }});
+     }
+     HandleNewProduct(){
+       return this.router.navigateByUrl("NewProduct")
+     }
+
+    
+    
+        
+       }
       
-    }
 
-    HandleNewProduct(){
-      this.router.navigateByUrl("NewProduct");
-    }
-    
+  
 
     
 
-  }
+  
 
 

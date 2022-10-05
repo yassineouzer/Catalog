@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Product } from '../model/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private products! :Array<any>;
-
+  private products! :Array<Product>;
+  
   constructor() { 
     this.products=[
       {id:1,name:"computer", price:87000},
@@ -16,9 +17,13 @@ export class ProductService {
       ]
   }
 
-  getAllProduct():Observable<Array<any>>{
+  getAllProduct():Observable<Array<Product>>{
     return of(this.products);
    }
 
+public deleteProduct(id:number):Observable<Array<Product>>{
+this.products=this.products.filter(product=>product.id!=id)
+return of(this.products);
+}
 
 }
