@@ -1,14 +1,15 @@
-<div xlass="container mt-3 md-6 offset-md-3">
-    <form >
-  <div class="mb-3 form-label p-5 pb-1">
-      <label bclass="form-label">Name</label>
+
+<div class="container mt-3 col-md-6 offset-md-3">
+    <form [formGroup]="ProductFormGroup" (ngSubmit)="HandleAddProduct()">
+  <div class="mb-3">
+      <label class="form-label">Name</label>
       <input type="text" formControlName="name" class="form-control" style="margin: 10px !important;">
   </div>
-  <div class="mb-3 form-label p-5" style="padding-top: 0px !important;">
-    <label bclass="form-label">price</label>
-    <input type="text" formControlName="name" class="form-control"style="margin: 10px !important;">
+  <div class="mb-3 " style="padding-top: 0px !important;">
+    <label class="form-label">price</label>
+    <input type="text" formControlName="price" class="form-control"style="margin: 10px !important;">
 </div>
-<div style="padding-left: 49px !important"><button class="btn btn-success" type="submit">Save</button></div>
+<div><button class="btn btn-success" type="submit" style=" padding: 10px 79p !important">Save</button></div>
 
     </form>
 </div>
