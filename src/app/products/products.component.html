@@ -1,5 +1,4 @@
 <div class="container">
-    
     <ng-template #errors>
         {{Errormessage}}
     </ng-template>>
@@ -20,7 +19,7 @@
                                 <td>{{ p.id}}</td>
                                 <td>{{ p.name}}</td>
                                 <td>{{ p.price}}</td>
-                                <td><button class="btn btn-danger" >
+                                <td><button class="btn btn-danger" (click)="HandleDeleteProduct(p)">
                                  Delete
                                 </button></td>
                             </tr>

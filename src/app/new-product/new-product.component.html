@@ -1,15 +1,20 @@
 
-<div class="container mt-3 col-md-6 offset-md-3">
+<div class="container mt-3 col-md-6 offset-md-3" style="display: flex;justify-content:center">
     <form [formGroup]="ProductFormGroup" (ngSubmit)="HandleAddProduct()">
   <div class="mb-3">
       <label class="form-label">Name</label>
-      <input type="text" formControlName="name" class="form-control" style="margin: 10px !important;">
+      <input type="text" formControlName="name" class="form-control" style="margin: 10px !important;width:300px">
+      <small *ngIf="ProductFormGroup.controls['name'].errors && ProductFormGroup.controls['name'].touched" class="text-danger"> 
+       {{getErrorMessage('name',ProductFormGroup.controls['name'].errors)}}
+    </small>
   </div>
   <div class="mb-3 " style="padding-top: 0px !important;">
     <label class="form-label">price</label>
-    <input type="text" formControlName="price" class="form-control"style="margin: 10px !important;">
+    <input type="text" formControlName="price" class="form-control"style="margin: 10px !important; width:300px">
+    <small *ngIf="ProductFormGroup.controls['price'].errors && ProductFormGroup.controls['price'].touched" class="text-danger"> 
+        {{getErrorMessage('price',ProductFormGroup.controls['price'].errors)}}
+     </small>
 </div>
-<div><button class="btn btn-success" type="submit" style=" padding: 10px 79p !important">Save</button></div>
-
+<div style="position:relative;"><button class="btn btn-success" type="submit" [disabled]="ProductFormGroup.invalid" style="position:absolute ;width:100% !important; top:20px;">Save</button></div>
     </form>
 </div>

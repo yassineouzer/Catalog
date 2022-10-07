@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Route, Router } from '@angular/router';
 import { NewProductComponent } from '../new-product/new-product.component';
+import { FormGroup } from '@angular/forms';
 import { Product } from '../model/product.model';
 
 @Component({
@@ -12,6 +13,7 @@ import { Product } from '../model/product.model';
 export class ProductsComponent implements OnInit {
   products! : Array<Product>;
   Errormessage! :string;
+  ProductFormGroup! :FormGroup;
 
   constructor(private productService:ProductService, private router:Router) { }
 
@@ -30,17 +32,23 @@ export class ProductsComponent implements OnInit {
      }
      )}
 
-     HandleDeleteProduct(p :Product){
-       this.productService.deleteProduct(p.id).subscribe(
-       {
-        next: (data: any) => { 
-          this.products = data ;
-        }});
-     }
+     HandleDeleteProduct(pro:Product){
+        let conf=confirm("Are you sure");
+        if(conf==false) return;
+        this.productService.deleteProduct(pro.id).subscribe({
+          next:(data)=>{
+            let index=this.products.indexOf(pro)
+       this.products.splice(index,1);
+          },
+        })
+        }
+
+
      HandleNewProduct(){
        return this.router.navigateByUrl("NewProduct")
      }
-
+    
+   
     
     
         

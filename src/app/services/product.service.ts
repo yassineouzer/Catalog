@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Product } from '../model/product.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +26,10 @@ public deleteProduct(id:number):Observable<Array<Product>>{
 this.products=this.products.filter(product=>product.id!=id)
 return of(this.products);
 }
-
+ 
+public AddNewProduct(product :Product):Observable<Product>{
+  
+  this.products.push(product);
+  return of(product);
+}
 }
